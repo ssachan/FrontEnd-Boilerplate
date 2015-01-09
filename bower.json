@@ -1,0 +1,27 @@
+{
+  "name": "Project Automation Template",
+  "version": "0.0.0",
+  "homepage": "https://github.com/ynagarjuna1995/project_automation_template",
+  "authors": [
+    "Nagarjuna <ynagarjuna2012@gmail.com>"
+  ],
+  "description": "Add your dependencies in this file and run bower install check this link to specify the version in your bower file in order to avoid mistakes (https://github.com/npm/node-semver#ranges)",
+  "main": "src/css/",
+  "moduleType": [
+    "node"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "1.9.1",
+    "bootstrap": "~3.3.1",
+    "wow":"1.0.2",
+    "animate.css":"3.2.0"
+  }
+}

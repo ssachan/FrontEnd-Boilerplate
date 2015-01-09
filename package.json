@@ -1,0 +1,39 @@
+{
+  "name": "FrontEnd-Broilerplate",
+  "version": "1.0.0",
+  "description": "Automates web development workflows by running the grunt tasks for minification,concatation,maintaining the js code qualitiy",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": ""
+  },
+  "keywords": [
+    "grunt",
+    "bower",
+    "jshint",
+    "html-minifier"
+  ],
+  "author": "",
+  "bugs": {
+    "url": ""
+  },
+  "homepage": "",
+  "devDependencies": {
+    "bower": "^1.3.12",
+    "grunt": "^0.4.5",
+    "grunt-contrib-concat": "^0.5.0",
+    "grunt-contrib-copy": "^0.7.0",
+    "grunt-contrib-jshint": "^0.10.0",
+    "grunt-contrib-uglify": "^0.6.0",
+    "grunt-contrib-cssmin": "0.11.0",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-jscs": "^1.1.0",
+    "grunt-shell": "^1.1.1"
+  },
+  "dependencies": {
+    "lodash": "^2.4.1"
+  }
+}
