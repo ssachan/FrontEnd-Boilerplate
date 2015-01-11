@@ -51,10 +51,10 @@ configureGrunt = function(grunt) {
                 },
             },	
 
-	// ### grunt-contrib-jshint
-	// Linting rules, run as part of `grunt validate`. See [grunt validate](#validate) and its subtasks for
-	// More information.
-	jshint : (function () {
+	        // ### grunt-contrib-jshint
+	        // Linting rules, run as part of `grunt validate`. See [grunt validate](#validate) and its subtasks for
+	        // More information.
+	        jshint : (function () {
                 return _.merge({
                     web: {
                         options: {
@@ -92,25 +92,20 @@ configureGrunt = function(grunt) {
                         stdin: false
                     }
                 },
-            },      
+            },
+
+            // ### grunt-contrib-clean
+            // Clean up files as part of other tasks
+            clean: {
+                release: {
+                    src: ['src/built/*.min.*']
+                }
+            }              
 
             // ### grunt-contrib-copy
             // Copy files into their correct locations as part of building assets, or creating release zips
-            /*copy: {
-                dev: {
-                    files: [{
-                        cwd: 'bower_components/jquery/',
-                        src: 'jquery.js',
-                        dest: 'src/built/public/',
-                        expand: true
-                    }, {
-                        cwd: 'bower_components/bootstrap/dist/js',
-                        src: 'bootstrap.js',
-                        dest: 'src/built/public/',
-                        expand: true
-                    }]
-                },
-                prod: {
+            copy: {
+                release: {
                     files: [{
                         cwd: 'bower_components/jquery/',
                         src: 'jquery.js',
@@ -122,9 +117,8 @@ configureGrunt = function(grunt) {
                         dest: 'src/built/public/',
                         expand: true
                     }]
-                },
-
-            },*/ 
+                }
+            },
             // ### grunt-contrib-concat
             // concatenate multiple JS files into a single file ready for use
             concat: {
@@ -180,20 +174,18 @@ configureGrunt = function(grunt) {
                         sourceMap: true
                     },
                     files: {
-						'src/built/vendor.min.js': 'src/built/scripts/vendor.js',
-                        'src/built/app.min.js': 'src/js/app.js'
+						'src/built/vendor.min.js': 'src/built/vendor.js',
+                        'src/built/app.min.js': 'src/app.js'
                     }
                 }
             },
             
             cssmin: {
                 prod: {
-                    files: [{
-                        expand: true,
-                        src: ['src/built/vendor.css'],
-                        dest: 'src/built',
-                        ext: '.min.css'
-                    }]
+                    files: {
+                        'src/built/style.min.css' : ['src/style.css'],
+                        'src/built/vendor.min.css' : ['src/built/vendor.css'],
+                    }
                 }
             }
 
@@ -227,6 +219,13 @@ configureGrunt = function(grunt) {
         // `grunt init --verbose` to see if there are any errors.
         grunt.registerTask('init', 'Prepare the project for development',
             ['shell:bower', 'default']);
+
+        // ### Production assets
+        // `grunt prod` - will build the minified assets used in production.
+        //
+        // It is otherwise the same as running `grunt`, but is only used when running Ghost in the `production` env.
+        grunt.registerTask('prod', 'Build JS & templates for production',
+            ['concat:prodjs', 'concat:prodcss', 'uglify:prod', 'cssmin:prod']);
 
         // ### Default asset build
         // `grunt` - default grunt task
@@ -266,7 +265,7 @@ configureGrunt = function(grunt) {
             ' - Copy files to release-folder/#/#{version} directory\n' +
             ' - Clean out unnecessary files (travis, .git*, etc)\n' +
             ' - Zip files in release-folder to dist-folder/#{version} directory',
-            ['init', 'concat:prodjs', 'concat:prodcss', 'cssmin:prod', 'emberBuildProd', 'uglify:release', 'clean:release', 'copy:release', 'compress:release']);
+            ['init', 'concat:prodjs', 'concat:prodcss', 'cssmin:prod', 'uglify:release', 'clean:release', 'copy:release', 'compress:release']);
 
 };
 // Export the configuration

@@ -1,7 +1,7 @@
 {
-  "name": "FrontEnd-Broilerplate",
+  "name": "FrontEnd-Boilerplate",
   "version": "1.0.0",
-  "description": "Automates web development workflows by running the grunt tasks for minification,concatation,maintaining the js code qualitiy",
+  "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -16,7 +16,7 @@
     "jshint",
     "html-minifier"
   ],
-  "author": "",
+  "author": "ssachan",
   "bugs": {
     "url": ""
   },
